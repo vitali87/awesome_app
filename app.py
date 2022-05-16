@@ -26,10 +26,10 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-data_init = pd.read_excel('/home/vitali/Documents/liuda/Book1.xlsx',
+data_init = pd.read_excel('Book1.xlsx',
                           sheet_name='Sheet3',
                           names=['date', 'rate', 'volatility'])
-df = pd.read_excel('/home/vitali/Documents/liuda/Book1.xlsx',
+df = pd.read_excel('Book1.xlsx',
                    sheet_name='Sheet2',
                    names=['date', 'rate', 'volatility'])
 
