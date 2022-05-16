@@ -6,3 +6,4 @@ pmdarima
 matplotlib
 arch
 streamlit
+openpyxl
