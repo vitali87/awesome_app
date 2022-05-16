@@ -10,9 +10,30 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 from arch import arch_model
 
-df = pd.read_excel('/home/vitali/Documents/liuda/Book1.xlsx',
+data_init = pd.read_excel('Book1.xlsx',
+                          sheet_name='Sheet3',
+                          names=['date', 'rate', 'volatility'])
+
+# Create figure with secondary y-axis
+fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+
+fig.add_trace(
+    go.Line(x=data_init['date'], y=data_init['rate'], name='rate'),
+    secondary_y=False
+)
+
+fig.add_trace(
+    go.Line(x=data_init['date'], y=data_init['volatility'], name='volatility'),
+    secondary_y=True
+)
+
+fig.show()
+
+df = pd.read_excel('Book1.xlsx',
                    sheet_name='Sheet2',
                    names=['date', 'rate', 'volatility'])
+
 
 PERIODS_AHEAD = 10*251
 # Create figure with secondary y-axis
@@ -36,6 +57,7 @@ ts.index = df['date']
 diff_ts = np.diff(ts)
 train = ts[ts.index <= datetime(2019, 12, 12)]
 test_size = len(ts)-len(train)
+
 # Automatic ARIMA model
 model = auto_arima(train, start_p=0, start_q=0)
 model.summary()
