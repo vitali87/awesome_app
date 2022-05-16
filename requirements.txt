@@ -1,0 +1,8 @@
+numpy
+pandas
+plotly
+statsmodels
+pmdarima
+matplotlib
+arch
+streamlit
